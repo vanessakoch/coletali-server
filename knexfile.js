@@ -17,6 +17,7 @@ module.exports = {
 
   production: { 
     client: 'pg', 
+    debug: true,
     connection: process.env.DATABASE_URL,
     migrations: {
       directory: path.resolve(__dirname, 'src', 'database', 'migrations')
@@ -24,6 +25,7 @@ module.exports = {
     seeds: {
       directory: path.resolve(__dirname, 'src', 'database', 'seeds')
     },
+    ssl: true
   },
 
   test: {
