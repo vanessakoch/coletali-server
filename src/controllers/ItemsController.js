@@ -8,7 +8,7 @@ class ItemsController {
       return {
         id: item.id,
         title: item.title,
-        image_url: `${process.env.APP_URL}/assets/${item.image}`,
+        image_url: `${process.env.APP_URL}assets/${item.image}`,
         isDonationItem: item.isDonationItem,
         information: item.information
       };
