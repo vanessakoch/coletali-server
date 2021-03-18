@@ -4,7 +4,7 @@ exports.up = async function (knex) {
     table.string('image').notNullable();
     table.string('name').notNullable();
     table.string('email').notNullable();
-    table.integer('whatsapp').notNullable();
+    table.bigInteger('whatsapp').notNullable();
 
     table.integer('address_id')
       .notNullable()
