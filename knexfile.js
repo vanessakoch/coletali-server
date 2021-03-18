@@ -18,6 +18,10 @@ module.exports = {
   production: { 
     client: 'pg', 
     connection: process.env.DATABASE_URL,
+    pool: {
+      min: 2,
+      max: 10
+    },
     migrations: {
       directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     },
@@ -25,9 +29,7 @@ module.exports = {
       directory: path.resolve(__dirname, 'src', 'database', 'seeds')
     },
     useNullAsDefault: true,
-    ssl: {
-      rejectUnauthorized: false
-    }  
+    ssl: true
   },
 
   test: {
