@@ -16,8 +16,7 @@ class UsersController {
         return response.json({ message: 'Falha na autenticação.' })
       }
 
-      const user = await knex('user')
-        .where({ 'id': payload.user });
+      const user = await knex('user').where({ 'id': payload.user });
 
       if (!user) {
         return response.json({ message: 'Falha na autenticação.' })
