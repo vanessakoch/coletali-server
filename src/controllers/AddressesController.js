@@ -41,10 +41,9 @@ class AddressesController {
     const inserted = await trx('address').insert(address)
     const address_id = inserted[0];
     await trx.commit();
-    address.id = address_id
 
     return response.json({
-      ...address
+      id: address_id
     })
   }
 
