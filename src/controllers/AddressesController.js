@@ -43,7 +43,7 @@ class AddressesController {
     await trx.commit();
 
     address.id = address_id
-    return response.status(200).send({ ...address })
+    return response.json({ message: 'FOI.' })
   }
 
   async update(request, response) {
