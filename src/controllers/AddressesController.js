@@ -42,7 +42,7 @@ class AddressesController {
     const address_id = inserted[0];
     await trx.commit();
 
-    return response.send({ id: address_id })
+    return response.status(200).send({ id: address_id, ...address })
   }
 
   async update(request, response) {
