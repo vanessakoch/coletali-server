@@ -44,7 +44,6 @@ class AddressesController {
     address.id = address_id
 
     return response.json({
-      id: address_id,
       ...address
     })
   }
