@@ -4,7 +4,7 @@ exports.up = async function (knex) {
     table.string('full_name').notNullable();
     table.string('cpf', 11).notNullable();
     table.string('email').notNullable().unique();
-    table.string('password', 8).notNullable();
+    table.string('password', 200).notNullable();
     table.bigInteger('phone').notNullable();
     table.boolean('is_admin').notNullable();
   })
