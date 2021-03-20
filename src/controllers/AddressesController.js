@@ -40,7 +40,9 @@ class AddressesController {
 
     const inserted = await trx('address').insert(address)
     const address_id = inserted[0];
+    console.log(address_id)
     await trx.commit();
+
 
     return response.send({ id: 1})
   }
