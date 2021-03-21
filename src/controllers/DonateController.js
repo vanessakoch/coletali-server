@@ -96,11 +96,12 @@ class DonateController {
       name,
       email,
       whatsapp,
-      address_id: address_id,
+      address_id,
       user_id
     }
 
     const insertedIds = await trx('donation_point').insert(donate)
+
     const donate_id = insertedIds[0];
 
     const donateItems = items
