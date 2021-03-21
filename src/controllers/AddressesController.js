@@ -38,12 +38,13 @@ class AddressesController {
       uf
     }
 
-    trx('address').insert(address).then(async(response) => {
-      console.log(response[0])
-      //const address_id = response[0];
-      //await trx.commit();
-  
-      //return response.json({ id: address_id })
+    const inserted = await trx('address').insert(address)
+    const address_id = inserted[0];
+    await trx.commit();
+
+    return response.json({
+      id: address_id,
+      ...address
     })
   }
 
