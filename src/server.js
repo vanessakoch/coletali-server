@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
-  origin: 'https://your-app-name.herokuapp.com',
+  origin: 'https://coletali-web.herokuapp.com/',
   optionsSuccessStatus: 200
 }
 
