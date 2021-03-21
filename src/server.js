@@ -20,7 +20,7 @@ conf = {
 
   cors: {
     origin: function (origin, cb) {
-      let wl = ['http://192.168.2.112:3333', 'https://coletali-web.herokuapp.com'];
+      let wl = ['http://192.168.2.112:3333', 'https://coletali-server.herokuapp.com/'];
       
       if (wl.indexOf(origin) != -1) {
         cb(null, true);
