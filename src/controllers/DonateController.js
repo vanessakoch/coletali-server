@@ -25,26 +25,29 @@ class DonateController {
   async index(request, response) {
     const items = request.query.items
     const parsedItems = String(items).split(',').map(item => item.trim());
-    console.log(parsedItems)
-    const donationPoint = await knex('donation_point')
-      .join('donation_point_items', 'donation_point.id', '=', 'donation_point_items.donate_id')
-      .whereIn('donation_point_items.item_id', parsedItems)
-      .join('address', 'donation_point.address_id', '=', 'address.id')
-      .select('donation_point.*')
-      .select('address.latitude')
-      .select('address.longitude')
-      .select('address.number')
-      .select('address.city')
-      .select('address.uf')
-      .distinct();
-
-    const serializedPoints = donationPoint.map(point => {
-      return {
-        ...point,
-        image_url: `${process.env.APP_URL}/uploads/${point.image}`
-      };
-    })
-    response.json(serializedPoints)
+    
+    if(parsedItems.length > 0) {
+      const donationPoint = await knex('donation_point')
+        .join('donation_point_items', 'donation_point.id', '=', 'donation_point_items.donate_id')
+        .whereIn('donation_point_items.item_id', parsedItems)
+        .join('address', 'donation_point.address_id', '=', 'address.id')
+        .select('donation_point.*')
+        .select('address.latitude')
+        .select('address.longitude')
+        .select('address.number')
+        .select('address.city')
+        .select('address.uf')
+        .distinct();
+  
+      const serializedPoints = donationPoint.map(point => {
+        return {
+          ...point,
+          image_url: `${process.env.APP_URL}/uploads/${point.image}`
+        };
+      })
+      response.json(serializedPoints)
+    }
+    
   }
 
   async show(request, response) {
