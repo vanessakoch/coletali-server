@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server.js",
-    "server": "node src/server.js",
+    "server": "npm install && node src/server.js",
     "knex:migrate": "knex --knexfile knexfile.js migrate:latest",
     "knex:seed": "knex --knexfile knexfile.js seed:run"
   },

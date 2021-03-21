@@ -13,7 +13,6 @@ conf = {
       res.json({
         mess: 'Hi you are visiting the service locally. If this was a CORS the origin header shoud not be undefined'
       });
-
     } else {
       next();
     }
@@ -21,7 +20,8 @@ conf = {
 
   cors: {
     origin: function (origin, cb) {
-      let wl = ['https://coletali-web.herokuapp.com'];
+      let wl = ['http://192.168.2.112:3333', 'https://coletali-web.herokuapp.com'];
+      
       if (wl.indexOf(origin) != -1) {
         cb(null, true);
       } else {
@@ -34,7 +34,6 @@ conf = {
 
 app.use(express.json());
 app.use(conf.originUndefined, cors(conf.cors));
-app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);
 app.use('/assets', express.static(path.resolve(__dirname, '..', 'assets')));
