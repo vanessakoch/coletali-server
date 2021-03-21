@@ -25,7 +25,7 @@ class DonateController {
   async index(request, response) {
     const items = request.query.items
     const parsedItems = String(items).split(',').map(item => item.trim());
-
+    console.log(parsedItems)
     const donationPoint = await knex('donation_point')
       .join('donation_point_items', 'donation_point.id', '=', 'donation_point_items.donate_id')
       .whereIn('donation_point_items.item_id', parsedItems)
