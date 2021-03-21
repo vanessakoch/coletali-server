@@ -49,7 +49,7 @@ class AddressesController {
     })
   }
 
-  async update(request, response) {
+  async update(request, response)  {
     const { id } = request.params;
 
     const addressUpdate = {
