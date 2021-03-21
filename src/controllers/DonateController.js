@@ -47,7 +47,6 @@ class DonateController {
       })
       response.json(serializedPoints)
     }
-    
   }
 
   async show(request, response) {
