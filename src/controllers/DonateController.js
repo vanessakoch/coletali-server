@@ -25,13 +25,10 @@ class DonateController {
   async index(request, response) {
     const items = request.query.items
     const parsedItems = String(items).split(',').map(item => item.trim());
-    const itemsIds = parsedItems.map(item => {
-      return Number(item)
-    })
 
     const donationPoint = await knex('donation_point')
       .join('donation_point_items', 'donation_point.id', '=', 'donation_point_items.donate_id')
-      .whereIn('donation_point_items.item_id', itemsIds)
+      .whereIn('donation_point_items.item_id', parsedItems)
       .join('address', 'donation_point.address_id', '=', 'address.id')
       .select('donation_point.*')
       .select('address.latitude')
