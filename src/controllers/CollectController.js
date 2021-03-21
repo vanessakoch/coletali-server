@@ -23,11 +23,14 @@ class CollectController {
 
   async index(request, response) {
     const items = request.query.items
-
     const parsedItems = String(items).split(',').map(item => item.trim());
+    const itemsIds = parsedItems.map(item => {
+      return Number(item)
+    })
+
     const collectionPoint = await knex('collection_point')
       .join('collection_point_items', 'collection_point.id', '=', 'collection_point_items.collect_id')
-      .whereIn('collection_point_items.item_id', parsedItems)
+      .whereIn('collection_point_items.item_id', itemsIds)
       .join('address', 'collection_point.address_id', '=', 'address.id')
       .select('collection_point.*')
       .select('address.latitude')
@@ -44,6 +47,7 @@ class CollectController {
       };
     })
     response.json(serializedPoints)
+
   }
 
   async show(request, response) {
