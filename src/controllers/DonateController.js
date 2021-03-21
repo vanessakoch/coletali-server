@@ -21,7 +21,6 @@ class DonateController {
     response.json(serializedPoints)
   }
 
-
   async index(request, response) {
     const items = request.query.items
     const parsedItems = String(items).split(',').map(item => item.trim());
@@ -45,7 +44,6 @@ class DonateController {
       };
     })
     response.json(serializedPoints)
-
   }
 
   async show(request, response) {
