@@ -24,9 +24,7 @@ module.exports = {
     seeds: {
       directory: path.resolve(__dirname, 'src', 'database', 'seeds')
     },
-    ssl: {
-      rejectUnauthorized: false
-    }
+    ssl: true
   },
 
   test: {

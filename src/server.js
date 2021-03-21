@@ -7,9 +7,7 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors({
-  exposedHeaders: ['x-auth-token']
-}));
+app.use(cors({ origin: 'https://coletali-server.herokuapp.com/'}));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
