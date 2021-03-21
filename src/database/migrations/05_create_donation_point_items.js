@@ -3,11 +3,13 @@ exports.up = async function (knex) {
     table.increments('id').primary();
 
     table.integer('donate_id')
+      .unsigned()
       .notNullable()
       .references('id')
       .inTable('donation_point');
 
     table.integer('item_id')
+      .unsigned()
       .notNullable()
       .references('id')
       .inTable('item');

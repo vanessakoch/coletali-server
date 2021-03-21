@@ -7,11 +7,13 @@ exports.up = async function (knex) {
     table.bigInteger('whatsapp').notNullable();
 
     table.integer('address_id')
+      .unsigned()
       .notNullable()
       .references('id')
       .inTable('address');
 
     table.integer('user_id')
+      .unsigned()
       .notNullable()
       .references('id')
       .inTable('user');
