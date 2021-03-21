@@ -16,6 +16,4 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 app.use(errors());
 
-app.listen(process.env.PORT || 3333, function () {
-  console.log("Server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+app.listen(process.env.PORT || 3333);
