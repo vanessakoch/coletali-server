@@ -1,10 +1,16 @@
 const express = require('express');
 const routes = require('./routes');
 const path = require('path');
+const cors = require('cors');
 const { errors } = require('celebrate');
 require("dotenv").config();
 
 const app = express();
+
+app.use(cors({
+  exposedHeaders: ['x-auth-token']
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
