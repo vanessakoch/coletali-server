@@ -25,11 +25,17 @@ class DonateController {
   async index(request, response) {
     const items = request.query.items
     const parsedItems = String(items).split(',').map(item => item.trim());
+    const numbItems = parsedItems.map(item => {
+      if (item) {
+        return Number(item);
+      }
+      return false;
+    })
     
-    if(parsedItems.length > 0) {
+    if (numbItems[0]) {
       const donationPoint = await knex('donation_point')
         .join('donation_point_items', 'donation_point.id', '=', 'donation_point_items.donate_id')
-        .whereIn('donation_point_items.item_id', parsedItems)
+        .whereIn('donation_point_items.item_id', numbItems)
         .join('address', 'donation_point.address_id', '=', 'address.id')
         .select('donation_point.*')
         .select('address.latitude')
@@ -38,7 +44,7 @@ class DonateController {
         .select('address.city')
         .select('address.uf')
         .distinct();
-  
+
       const serializedPoints = donationPoint.map(point => {
         return {
           ...point,
@@ -46,6 +52,8 @@ class DonateController {
         };
       })
       response.json(serializedPoints)
+    } else {
+      response.json({ message: "Nenhum item selecionado" })
     }
   }
 
