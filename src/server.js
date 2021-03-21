@@ -8,8 +8,9 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
-
+app.use(cors({
+  exposedHeaders: ['x-auth-token']
+}));
 app.use(routes);
 app.use('/assets', express.static(path.resolve(__dirname, '..', 'assets')));
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
