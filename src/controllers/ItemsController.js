@@ -3,7 +3,7 @@ const knex = require('../database/connection');
 class ItemsController {
   async index(request, response) {
     const items = await knex('item').select('*');
-
+    console.log(items)
     const serializedItems = items.map(item => {
       return {
         id: item.id,

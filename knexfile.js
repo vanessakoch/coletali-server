@@ -16,8 +16,8 @@ module.exports = {
   },
 
   production: {
-    client: 'pg',
-    connection: process.env.DATABASE_URL,
+    client: 'mysql',
+    connection: process.env.CLEARDB_DATABASE_URL,
     migrations: {
       directory: path.resolve(__dirname, 'src', 'database', 'migrations')
     },
@@ -25,7 +25,6 @@ module.exports = {
       directory: path.resolve(__dirname, 'src', 'database', 'seeds')
     },
     useNullAsDefault: true,
-    ssl: true
   },
 
   test: {
