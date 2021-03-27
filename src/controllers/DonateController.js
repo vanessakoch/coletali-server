@@ -15,7 +15,7 @@ class DonateController {
     const serializedPoints = donations.map(point => {
       return {
         ...point,
-        image_url: `${process.env.APP_URL}/uploads/${point.image}`
+        image_url: `${process.env.APP_IMAGE}/${point.image}`
       };
     })
     response.json(serializedPoints)
@@ -40,7 +40,7 @@ class DonateController {
     const serializedPoints = donationPoint.map(point => {
       return {
         ...point,
-        image_url: `${process.env.APP_URL}/uploads/${point.image}`
+        image_url: `${process.env.APP_IMAGE}/${point.image}`
       };
     })
     response.json(serializedPoints)
@@ -65,7 +65,7 @@ class DonateController {
 
     const serializedPoint = {
       ...donate,
-      image_url: `${process.env.APP_URL}/uploads/${donate.image}`
+      image_url: `${process.env.APP_IMAGE}/${donate.image}`
     }
 
     const items = await knex('item')
@@ -91,7 +91,7 @@ class DonateController {
     const trx = await knex.transaction();
 
     const donate = {
-      image: request.file.filename,
+      image: request.file.key,
       name,
       email,
       whatsapp,
@@ -140,7 +140,7 @@ class DonateController {
         name,
         email,
         whatsapp,
-        image: request.file.filename
+        image: request.file.key
       }
     } else {
       donateUpdate = {

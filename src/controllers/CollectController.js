@@ -15,7 +15,7 @@ class CollectController {
     const serializedPoints = collections.map(point => {
       return {
         ...point,
-        image_url: `${process.env.APP_URL}/uploads/${point.image}`
+        image_url: `${process.env.APP_IMAGE}/${point.image}`
       };
     })
     response.json(serializedPoints)
@@ -40,7 +40,7 @@ class CollectController {
     const serializedPoints = collectionPoint.map(point => {
       return {
         ...point,
-        image_url: `${process.env.APP_URL}/uploads/${point.image}`
+        image_url: `${process.env.APP_IMAGE}/${point.image}`
       };
     })
     response.json(serializedPoints)
@@ -65,7 +65,7 @@ class CollectController {
 
     const serializedPoint = {
       ...collect,
-      image_url: `${process.env.APP_URL}/uploads/${collect.image}`
+      image_url: `${process.env.APP_IMAGE}/${collect.image}`
     }
 
     const items = await knex('item')
@@ -91,7 +91,7 @@ class CollectController {
     const trx = await knex.transaction();
 
     const collect = {
-      image: request.file.filename,
+      image: request.file.key,
       name,
       email,
       whatsapp,
@@ -139,7 +139,7 @@ class CollectController {
         name,
         email,
         whatsapp,
-        image: request.file.filename
+        image: request.file.key
       }
     } else {
       collectUpdate = {
