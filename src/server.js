@@ -4,8 +4,6 @@ const path = require('path');
 const cors = require('cors');
 const { errors } = require('celebrate');
 require("dotenv").config();
-const aws = require('aws-sdk');
-aws.config.region = 'sa-east-1';
 
 const app = express();
 
